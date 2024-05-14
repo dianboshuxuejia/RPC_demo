@@ -1,0 +1,53 @@
+package com.rpcgp.client.proxy;
+
+import java.lang.reflect.Field;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.stereotype.Component;
+
+import com.rpcgp.client.annotation.RemoteInvoke;
+
+@Component
+public class InvokeProxy implements BeanPostProcessor{
+
+	@Override
+	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		
+		
+		//Field 是 Java 反射机制中的一个类，它代表了类的成员变量（字段）。
+		//通过 getDeclaredFields() 返回的是一个 Field 数组，表示目标 Bean 类的所有字段。
+		//接下来的代码就是遍历这些字段，针对每个字段进行处理。
+		//Field 类确切地代表了类或接口的成员变量，而不是整个类或接口本身。
+		//每个 Field 对象都与特定的类或接口以及该类或接口中的一个字段（成员变量）相关联。
+		//通过 Field 对象，可以获取有关字段的信息，如类型、修饰符、名称，并且还可以对字段的值进行操作。
+		//但是 Field 本身并不代表整个类。
+		Field[] fields = bean.getClass().getDeclaredFields();
+		for (Field field:fields) {
+			if (field.isAnnotationPresent(RemoteInvoke.class)) {
+				field.setAccessible(true);
+				Enhancer enhancer = new Enhancer();
+				try {
+					field.set(bean, enhancer.create());
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+
+			
+		}
+ 		// TODO Auto-generated method stub
+		return bean;
+	}
+
+	@Override
+	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		// TODO Auto-generated method stub
+		return bean;
+	}
+	
+
+}

@@ -1,0 +1,14 @@
+package com.rpcgp.user.remote;
+
+import java.util.List;
+
+import com.rpcgp.user.bean.User;
+import com.rpcgp.client.core.DefaultFuture;
+import com.rpcgp.client.param.Response;
+
+public interface UserRemote{
+	public Response saveUser(User users);
+	public Response saveUsers(List<User> users);
+	
+
+}

@@ -1,0 +1,47 @@
+package com.rpcgp.client;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.rpcgp.client.annotation.RemoteInvoke;
+import com.rpcgp.user.bean.User;
+import com.rpcgp.user.remote.UserRemote;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = RemoteInvokingTest.class)
+@ComponentScan("com.rpcgp.pro_netty_rpc")
+public class RemoteInvokingTest {
+
+	@RemoteInvoke
+	private UserRemote userRemote;
+	public static User user;
+	static{
+		user = new User();
+		user.setId(1000);
+		user.setName("张三");
+	}
+	@Test
+	public void testSaveUser() {
+		user.setId(1);
+		user.setName("gao");
+		userRemote.saveUser(user);
+	}
+	
+	@Test
+	public void testSaveUsers() {
+		List<User> users = new ArrayList<User>();
+		User u = new User();
+		u.setId(1);
+		u.setName("gao");
+		users.add(u);
+
+		userRemote.saveUsers(users);
+	}
+
+}

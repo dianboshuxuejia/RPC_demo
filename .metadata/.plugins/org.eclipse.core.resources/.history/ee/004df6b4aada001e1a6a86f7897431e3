@@ -1,0 +1,5 @@
+package com.rpcgp.client.proxy;
+
+public class InvokeProxy {
+
+}

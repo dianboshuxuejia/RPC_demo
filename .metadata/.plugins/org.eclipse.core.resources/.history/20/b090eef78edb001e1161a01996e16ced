@@ -1,0 +1,28 @@
+
+  package com.rpcgp.user.remote;
+  
+  import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.rpcgp.client.annotation.Remote;
+import com.rpcgp.user.model.User;
+import
+  com.rpcgp.user.service.UserService;
+  
+  @Remote public class UserRemoteImpl implements UserRemote{
+  
+  @Resource private UserService userservice;
+  
+  public Object saveUser(User user) { UserService.save(user);
+  
+  return ResponseUtil.createSuccessResult(user);
+  
+  } public Object saveUsers(List<User> users) { UserService.saveList(users);
+  
+  return ResponseUtil.createSuccessResult(users);
+  
+  }
+  
+  }
+ 

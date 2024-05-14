@@ -1,0 +1,9 @@
+package com.rpcgp.netty.util;
+
+public class ResponseUtil {
+	public static Response createSuccessResult() {
+		return new Response();
+		
+	}
+
+}

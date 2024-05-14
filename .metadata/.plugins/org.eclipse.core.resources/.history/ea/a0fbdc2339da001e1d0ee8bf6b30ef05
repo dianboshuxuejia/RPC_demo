@@ -1,0 +1,5 @@
+package com.rpcgp.pro_netty_rpc;
+
+public class RemoteInvokingTest {
+
+}

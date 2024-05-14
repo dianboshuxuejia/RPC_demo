@@ -1,0 +1,11 @@
+package com.rpcgp.netty.util;
+
+import com.rpcgp.netty.client.Response;
+
+public class ResponseUtil {
+	public static Response createSuccessResult() {
+		return new Response();
+		
+	}
+
+}

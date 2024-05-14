@@ -1,0 +1,37 @@
+package com.rpcgp.pro_netty_rpc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+import com.rpcgp.netty.annotation.RemoteInvoke;
+import com.rpcgp.netty.client.ClientRequest;
+import com.rpcgp.netty.client.TCPClient;
+import com.rpcgp.netty.user.bean.User;
+import com.rpcgp.netty.user.remote.UserRemote;
+import com.rpcgp.netty.util.Response;
+
+public class RemoteInvokingTest {
+	@RemoteInvoke
+	private UserRemote userRemote;
+	
+	@Test
+	public void testSaveUser() {
+		User u = new User();
+		u.setId(1);
+		u.setName("gao");
+		userRemote.saveUser(u);
+	}
+	
+	public void testSaveUsers() {
+		List<User> users = new ArrayList<User>();
+		User u = new User();
+		u.setId(1);
+		u.setName("gao");
+		users.add(u);
+
+		userRemote.saveUsers(u);
+	}
+
+}

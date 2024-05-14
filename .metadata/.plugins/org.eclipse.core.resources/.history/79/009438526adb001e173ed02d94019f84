@@ -1,0 +1,8 @@
+package com.rpcgp.netty.annotation;
+
+public class Snippet {
+	public static void main(String[] args) {
+		import com.rpcgp.netty.util.ResponseUtil;
+	}
+}
+

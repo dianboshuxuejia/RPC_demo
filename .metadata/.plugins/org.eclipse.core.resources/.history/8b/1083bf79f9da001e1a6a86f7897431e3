@@ -1,0 +1,5 @@
+package com.rpcgp.user.remote;
+
+public class TestRemote {
+
+}

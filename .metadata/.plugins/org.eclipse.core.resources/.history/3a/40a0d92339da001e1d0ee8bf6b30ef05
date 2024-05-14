@@ -1,0 +1,5 @@
+package com.rpcgp.netty.annotation;
+
+public @interface RemoteInvoke {
+
+}

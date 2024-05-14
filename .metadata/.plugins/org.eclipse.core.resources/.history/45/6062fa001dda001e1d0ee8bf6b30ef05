@@ -1,0 +1,31 @@
+package com.rpcgp.pro_netty_rpc;
+
+import org.junit.Test;
+
+import com.rpcgp.netty.client.ClientRequest;
+import com.rpcgp.netty.client.Response;
+import com.rpcgp.netty.client.TCPClient;
+
+public class TestTCP {
+	@Test
+	public void testGetResponse() {
+		ClientRequest request = new ClientRequest();
+		request.setContent("测试tcp长连接");
+		Response resp= TCPClient.send(request);
+		System.out.println(resp.getResult());
+	}
+	
+	
+//	@Test
+//	public void testSaveUser() {
+//		ClientRequest request = new ClientRequest();
+//		User u = new User();
+//		u.setId(1);
+//		u.setName("gao");
+//		request.setCommand("com.rpcgp.netty.user.controller.saveUser");
+//		request.setContent(u);
+//
+//		Response resp= TCPClient.send(request);
+//		System.out.println(resp.getResult());
+//	}
+}

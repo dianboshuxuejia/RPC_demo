@@ -1,0 +1,5 @@
+package com.rpcgp.netty.user.remote;
+
+public class UserRemoteImpl {
+
+}
